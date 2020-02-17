@@ -43,7 +43,7 @@ mongoose.connect(MONGODB_URI, {useNewUrlParser: true}, (err) => {
 app.get("/", (req, res) => {
     console.log("in the / route");
     db.Quote.find()
-            .populate("notes")
+            .populate("quotes")
             .lean()
             .then(function (dbQuotes) {
         console.log("***********************")
@@ -59,8 +59,13 @@ app.get("/", (req, res) => {
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function (req, res) {
+    var query = {}
+    db.Quote.deleteMany(query, function(err, obj) {
+        if (err) throw err;
+      });
     // First, we grab the body of the html with axios
     axios.get("http://quotes.toscrape.com/").then(function (response) {
+        
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(response.data);
 
@@ -81,7 +86,7 @@ app.get("/scrape", function (req, res) {
             db.Quote.create(result)
                 .then(function (dbQuote) {
                     // View the added result in the console
-                    console.log(dbQuote);
+                    //console.log(dbQuote);
                 })
                 .catch(function (err) {
                     // If an error occurred, log it

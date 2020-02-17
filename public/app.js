@@ -11,11 +11,17 @@ $(document).on("load", function(){
 //     }
 //   });
 // $(document).ready(function () {
-// $('.scrape-btn').click(function(){
-//     // show Modal
-//     $('#showModal').modal('show');
-// });
+$('#showModal').click(function(){
+    // show Modal
+    $.get('/scrape').done(function(data) {
+                window.location.reload();
+                // $(".myModal").modal('show');
+
+
+    });
+    
 });
+// });
   // Whenever someone clicks a p tag
   $(document).on("click", "p", function() {
     // Empty the notes from the note section
