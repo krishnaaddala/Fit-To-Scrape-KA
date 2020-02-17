@@ -7,3 +7,11 @@
 .onLoad{
     background-color: orange;
 }
+.list{
+    margin-top: 500px;
+}
+.quotesList {
+    padding: 5px;
+    margin: 5px;
+    background: skyblue;
+  }

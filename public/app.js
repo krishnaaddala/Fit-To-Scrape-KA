@@ -10,9 +10,12 @@ $(document).on("load", function(){
 //       $("#quotes").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
 //     }
 //   });
-  
-
-
+// $(document).ready(function () {
+// $('.scrape-btn').click(function(){
+//     // show Modal
+//     $('#showModal').modal('show');
+// });
+});
   // Whenever someone clicks a p tag
   $(document).on("click", "p", function() {
     // Empty the notes from the note section

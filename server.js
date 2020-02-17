@@ -44,6 +44,7 @@ app.get("/", (req, res) => {
     console.log("in the / route");
     db.Quote.find()
             .populate("notes")
+            .lean()
             .then(function (dbQuotes) {
         console.log("***********************")
         console.log(dbQuotes)

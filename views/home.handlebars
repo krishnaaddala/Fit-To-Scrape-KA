@@ -1,20 +1,25 @@
 <div>
 <h1>Quotes App</h1>
-
+</div>
+<div class="container">
+    <div class="row"> 
+        <div class="col-md-12"></div>
 <p>Manage quotes with this app</p>
 
 <!-- Pass in data from server.js -->
-<ul>
+<ul class="list">
   {{#each quotes}}
-  	<li>
-      <p><span class="label">Quote:</span> {{this.quote}}</p>
-      <p><span class="label">Author:</span> {{this.author}}</p>
+  	<li class="quotesList">
+      <p><span class="label">Quote:</span> {{quote}}</p>
+      <p><span class="label">Author:</span> {{author}}</p>
       <button data-id="{{this.quote}}" class="savequote">Save Article</button>
-        <script>console.log(Quote)</script>
   	</li>
   {{/each}}
 </ul>
 </div>
+</div>
+</div>
+
 
 
 {{!-- <form class="create-form">
