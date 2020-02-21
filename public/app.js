@@ -1,5 +1,5 @@
 $(document).on("load", function(){
-    $("#onLoad").append("<h2>" + "Uh-Oh Looks like we don't have any new quotes." + "</h2>");
+    $("#onload-msg").append("<h2>" + "Uh-Oh Looks like we don't have any new quotes." + "</h2>");
 })
 
 // Grab the quotes as a json
@@ -16,8 +16,6 @@ $('#showModal').click(function(){
     $.get('/scrape').done(function(data) {
                 window.location.reload();
                 // $(".myModal").modal('show');
-
-
     });
     
 });
@@ -53,6 +51,23 @@ $('#showModal').click(function(){
           // Place the body of the note in the body textarea
           $("#bodyinput").val(data.note.body);
         }
+      });
+  });
+
+
+  $(document).on("click", "#saveMyQuote", function() {
+    // Grab the id associated with the article from the submit button
+    var thisId = $(this).attr("data-id");
+  
+    // Run a POST request to save the quote, using what's entered in the inputs
+    $.ajax({
+      method: "POST",
+      url: "/quotes/" + thisId
+    })
+      // With that done
+      .then(function(data) {
+        // Log the response
+        console.log(JSON.stringify(data));
       });
   });
   

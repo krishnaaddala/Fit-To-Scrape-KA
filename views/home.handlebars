@@ -6,15 +6,18 @@
         <div class="col-md-12"></div>
 <p>Manage quotes with this app</p>
 
-
+{{#unless quotes}}
 <div id='onload-msg'><h2>Uh-Oh Looks like we don't have any new quotes.</h2></div>
+{{/unless}}
 <!-- Pass in data from server.js -->
 <ul class="list">
   {{#each quotes}}
   	<li class="quotesList">
       <p><span class="label">Quote:</span> {{quote}}</p>
       <p><span class="label">Author:</span> {{author}}</p>
-      <button data-id="{{this.quote}}" class="savequote">Save Article</button>
+      <button data-id="{{this.quote}}" class="saveQuote" id="saveMyQuote" method = "POST">Save Article</button>
+        {{!-- <button type="submit" data-mongoId="{{this._id}}" class="delete-comment-btn btn btn-danger btn-sml">Delete Comment</button> --}}
+
   	</li>
   {{/each}}
 </ul>
