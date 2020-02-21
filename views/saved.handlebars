@@ -9,7 +9,16 @@
     <li class="quotesList">
         <p><span class="label">Quote:</span> {{quote}}</p>
         <p><span class="label">Author:</span> {{author}}</p>
-        <button data-id="{{quote}}" class="saveQuote" id="saveMyQuote">Note</button>
+        {{!-- <button data-id="{{id}}" class="createNote" id="createMyNote">Note</button> --}}
+        {{#each this.notes}}
+        <p>{{this.body}}</p>
+        {{/each}}
+        <form>
+        <textarea id="noteText" class="noteText">
+        </textarea>
+            <button data-id="{{id}}" class="createNote" id="createMyNote">Save Note</button>
+
+        </form>
         <button data-id="{{quote}}" id = "delete-quote" class="delete-comment-btn btn btn-danger btn-sml">Delete Quote</button>
     </li>
     {{/each}}

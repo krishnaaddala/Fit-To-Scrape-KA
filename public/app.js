@@ -88,7 +88,11 @@ $('#showModal').click(function(){
   });
   
   // When you click the savenote button
-  $(document).on("click", "#savenote", function() {
+  $(document).on("click", "#createMyNote", function() {
+
+    // 
+
+
     // Grab the id associated with the article from the submit button
     var thisId = $(this).attr("data-id");
   
@@ -98,9 +102,9 @@ $('#showModal').click(function(){
       url: "/quotes/" + thisId,
       data: {
         // Value taken from title input
-        title: $("#titleinput").val(),
+        // title: $("#titleinput").val(),
         // Value taken from note textarea
-        body: $("#bodyinput").val()
+        body: $("#noteText").val()
       }
     })
       // With that done
