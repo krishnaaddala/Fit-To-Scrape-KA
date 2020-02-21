@@ -113,6 +113,17 @@ app.get("/quotes", function (req, res) {
         });
 });
 
+app.put("/quotes/:id", function(req, res){
+    db.Quote.findOneAndUpdate({quote: req.params.id}, {$set: {isSaved: true}}, {new: true})
+    .then(function(data){
+        console.log(data)
+        res.json(data);
+    })
+    .catch(function(err){
+        res.json(err)
+    })
+})
+
 // // Route for grabbing a specific Quote by id, populate it with it's note
 // app.get("/quotes/:id", function(req, res) {
 //   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...

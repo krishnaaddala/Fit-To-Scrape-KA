@@ -61,7 +61,7 @@ $('#showModal').click(function(){
   
     // Run a POST request to save the quote, using what's entered in the inputs
     $.ajax({
-      method: "POST",
+      method: "PUT",
       url: "/quotes/" + thisId
     })
       // With that done
