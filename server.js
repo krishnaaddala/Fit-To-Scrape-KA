@@ -137,7 +137,18 @@ app.put("/quotes/:id", function(req, res){
     .catch(function(err){
         res.json(err)
     })
-})
+});
+
+app.delete("/quotes/:id", function(req, res){
+    db.Quote.findOneAndUpdate({quote: req.params.id}, {$set: {isSaved: false}}, {new: true})
+    .then(function(data){
+        console.log(data)
+        res.json(data);
+    })
+    .catch(function(err){
+        res.json(err)
+    })
+});
 
 // // Route for grabbing a specific Quote by id, populate it with it's note
 // app.get("/quotes/:id", function(req, res) {

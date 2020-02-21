@@ -70,6 +70,22 @@ $('#showModal').click(function(){
         console.log(JSON.stringify(data));
       });
   });
+
+  $(document).on("click", "#delete-quote", function() {
+    // Grab the id associated with the article from the submit button
+    var thisId = $(this).attr("data-id");
+  
+    // Run a POST request to save the quote, using what's entered in the inputs
+    $.ajax({
+      method: "DELETE",
+      url: "/quotes/" + thisId
+    })
+      // With that done
+      .then(function(data) {
+        // Log the response
+        window.location.reload();     
+     });
+  });
   
   // When you click the savenote button
   $(document).on("click", "#savenote", function() {

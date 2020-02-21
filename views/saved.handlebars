@@ -10,7 +10,7 @@
         <p><span class="label">Quote:</span> {{quote}}</p>
         <p><span class="label">Author:</span> {{author}}</p>
         <button data-id="{{quote}}" class="saveQuote" id="saveMyQuote">Note</button>
-        <button type="submit" data-mongoId="{{this._id}}" class="delete-comment-btn btn btn-danger btn-sml">Delete Quote</button>
+        <button data-id="{{quote}}" id = "delete-quote" class="delete-comment-btn btn btn-danger btn-sml">Delete Quote</button>
     </li>
     {{/each}}
 </ul>
