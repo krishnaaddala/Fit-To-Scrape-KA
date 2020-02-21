@@ -1,2 +1,16 @@
-<h1> this is the saved page!
-</h1>
+{{#unless quotes}}
+<div id='onload-msg'>
+    <h2>No Saved Quotes!!!</h2>
+</div>
+{{/unless}}
+<!-- Pass in data from server.js -->
+<ul class="list">
+    {{#each quotes}}
+    <li class="quotesList">
+        <p><span class="label">Quote:</span> {{quote}}</p>
+        <p><span class="label">Author:</span> {{author}}</p>
+        <button data-id="{{quote}}" class="saveQuote" id="saveMyQuote">Note</button>
+        <button type="submit" data-mongoId="{{this._id}}" class="delete-comment-btn btn btn-danger btn-sml">Delete Quote</button>
+    </li>
+    {{/each}}
+</ul>

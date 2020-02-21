@@ -55,6 +55,21 @@ app.get("/", (req, res) => {
     })
 });
 
+app.get("/saved", (req, res) => {
+    console.log("in the / route");
+    db.Quote.find({isSaved: true})
+            .populate("quotes")
+            .lean()
+            .then(function (dbQuotes) {
+        console.log("***********************")
+        console.log(dbQuotes)
+        res.render("saved",
+            {
+                quotes: dbQuotes
+            });
+    })
+});
+
 //API Routes
 
 // A GET route for scraping the echoJS website
