@@ -2,15 +2,6 @@ $(document).on("load", function(){
     $("#onload-msg").append("<h2>" + "Uh-Oh Looks like we don't have any new quotes." + "</h2>");
 })
 
-// Grab the quotes as a json
-// $.getJSON("/quotes", function(data) {
-//     // For each one
-//     for (var i = 0; i < data.length; i++) {
-//       // Display the apropos information on the page
-//       $("#quotes").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-//     }
-//   });
-// $(document).ready(function () {
 $('#showModal').click(function(){
     // show Modal
     $.get('/scrape').done(function(data) {
