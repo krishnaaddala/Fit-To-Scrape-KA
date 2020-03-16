@@ -9,32 +9,27 @@
     <li class="quotesList">
         <p><span class="label">Quote:</span> {{quote}}</p>
         <p><span class="label">Author:</span> {{author}}</p>
-        {{!-- <button data-id="{{id}}" class="createNote" id="createMyNote">Note</button> --}}
-
-        {{!-- {{this.note.title}}
-        {{this.note.body}} --}}
-
         <button class="createNote" id="createMyNote">Quote Notes</button>
-        <div class="modal" id = "modalNote"tabindex="-1" role="dialog">
+        <div class="modal" id="modalNote" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Quote Notes</h5>
-                        
+
                     </div>
                     <div class="modal-body">
-                       
+
                         {{#each this.note}}
-                            <div>
-                                <p>{{this.body}}</p>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                        <div>
+                            <p>{{this.body}}</p>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         {{/each}}
 
                         <form>
-                            <label for = "noteBody">Add a Note</label>
+                            <label for="noteBody">Add a Note</label>
                             <br>
                             <textarea id="noteBody">
 
@@ -43,7 +38,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-id="{{quote}}" id="saveThisNote">Save Note</button>
+                        <button type="button" class="btn btn-primary" data-id="{{quote}}" id="saveThisNote">Save
+                            Note</button>
                     </div>
                 </div>
             </div>
