@@ -58,11 +58,12 @@ app.get("/", (req, res) => {
 app.get("/saved", (req, res) => {
     console.log("in the / route");
     db.Quote.find({isSaved: true})
-            .populate("quotes")
+            //.populate("note")
             .lean()
             .then(function (dbQuotes) {
         console.log("***********************")
         console.log(dbQuotes)
+        // console.log(dbNote)
         res.render("saved",
             {
                 quotes: dbQuotes
@@ -167,15 +168,16 @@ app.delete("/quotes/:id", function(req, res){
 // });
 
 // Route for saving/updating an Quote's associated Note
-app.post("/quotes/:id", function (req, res) {
+app.post("/quotes/add-note", function (req, res) {
+    
     // Create a new note and pass the req.body to the entry
     db.Note.create(req.body)
-        .then(function (dbNote) {
+        //.then(function (dbNote) {
             // If a Note was created successfully, find one Quote with an `_id` equal to `req.params.id`. Update the Quote to be associated with the new Note
             // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
             // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-            return db.Quote.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
-        })
+            //return db.Quote.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+        //})
         .then(function (dbQuote) {
             // If we were able to successfully update an Quote, send it back to the client
             res.json(dbQuote);
@@ -184,6 +186,35 @@ app.post("/quotes/:id", function (req, res) {
             // If an error occurred, send it to the client
             res.json(err);
         });
+});
+
+app.get("/quotes/get-notes/:quoteId", function (req, res) {
+    let qId = req.params.quoteId
+    // Create a new note and pass the req.body to the entry
+    db.Note.find({quoteId : qId}).exec()
+    .then(notes => {              
+        console.log(notes);
+        res.json(notes);
+      });
+    
+        //.then(function (dbNote) {
+            // If a Note was created successfully, find one Quote with an `_id` equal to `req.params.id`. Update the Quote to be associated with the new Note
+            // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
+            // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+            //return db.Quote.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+        //})
+        
+});
+
+
+app.delete("/notes/:id", function(req, res){
+    db.Note.deleteOne({_id: req.params.id})
+    .then(function(data){
+        res.json(data);
+    })
+    .catch(function(err){
+        res.json(err)
+    })
 });
 
 // Start the server

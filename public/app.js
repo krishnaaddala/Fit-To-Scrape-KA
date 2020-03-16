@@ -14,8 +14,8 @@ $(document).on("load", function(){
 $('#showModal').click(function(){
     // show Modal
     $.get('/scrape').done(function(data) {
-                window.location.reload();
-                // $(".myModal").modal('show');
+                // window.location.reload();
+                $(".myModal").modal('show');
     });
     
 });
@@ -88,39 +88,47 @@ $('#showModal').click(function(){
   });
 
   $(document).on("click", "#createMyNote", function() {
-    $("#modalNote").modal("show")
+
+    $.ajax({
+      method: "GET",
+      url: "/quotes/get-notes/" + quoteId
+    })
+      // With that done, add the note information to the page
+      .then(function(data) {
+        console.log(data);
+        $("#modalNote").modal("show")
+      });
+
+    
+
   });
   
   // When you click the savenote button
-//   $(document).on("click", "#createMyNote", function() {
-
-//     // 
-
-
-//     // Grab the id associated with the article from the submit button
-//     var thisId = $(this).attr("data-id");
+  $(document).on("click", "#saveThisNote", function() {
+    // Grab the id associated with the article from the submit button
+    var thisId = $(this).attr("data-id");
+    console.log("id"+thisId);
+    // Run a POST request to change the note, using what's entered in the inputs
+    $.ajax({
+      method: "POST",
+      url: "/quotes/" + thisId,
+      data: {
+        // Value taken from note textarea
+        body: $("#noteBody").val(),
+        quoteId: thisId
+      }
+    })
+      // With that done
+      .then(function(data) {
+        // Log the response
+        console.log(data);
+        window.location.reload();     
+        // Empty the notes section
+        // $("#notes").empty();
+      });
   
-//     // Run a POST request to change the note, using what's entered in the inputs
-//     $.ajax({
-//       method: "POST",
-//       url: "/quotes/" + thisId,
-//       data: {
-//         // Value taken from title input
-//         // title: $("#titleinput").val(),
-//         // Value taken from note textarea
-//         body: $("#noteText").val()
-//       }
-//     })
-//       // With that done
-//       .then(function(data) {
-//         // Log the response
-//         console.log(data);
-//         // Empty the notes section
-//         $("#notes").empty();
-//       });
-  
-//     // Also, remove the values entered in the input and textarea for note entry
-//     $("#titleinput").val("");
-//     $("#bodyinput").val("");
-//   });
+    // Also, remove the values entered in the input and textarea for note entry
+    $("#titleinput").val("");
+    $("#bodyinput").val("");
+  });
   
