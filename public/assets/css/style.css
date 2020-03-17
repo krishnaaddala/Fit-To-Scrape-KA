@@ -8,11 +8,35 @@
     background-color: orange;
     
 }
-.list{
-    margin-top: 500px;
+.appTitle{
+    background-color: orange;
 }
+.list{
+    margin-top: 500px;    
+    padding: 5px;
+
+}
+.myModal{
+    height: 30%;
+    margin: auto;
+    width: 30%
+
+}
+
 .quotesList {
     padding: 5px;
-    margin: 5px;
+    margin: 15px;
     background: skyblue;
+    margin-top: 10px;
+    margin-left: 10px;   
+    margin-right: 10px;
+    margin-bottom: 10px;
   }
+
+  #modalNote{
+    height: 40%;
+    margin: auto;
+    width: 40%
+  }
+
+ 

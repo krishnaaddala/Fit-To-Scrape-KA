@@ -9,7 +9,7 @@
     <li class="quotesList">
         <p><span class="label">Quote:</span> {{quote}}</p>
         <p><span class="label">Author:</span> {{author}}</p>
-        <button class="createNote" id="createMyNote">Quote Notes</button>
+        <button class="btn btn-primary createNote" id="createMyNote">Quote Notes</button>
         <div class="modal" id="modalNote" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -17,7 +17,7 @@
                         <h5 class="modal-title">Quote Notes</h5>
 
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body noteModal">
 
                         {{#each this.note}}
                         <div>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-id="{{quote}}" id="saveThisNote">Save
+                        <button type="button" class="btn btn-primary" data-id="{{_id}}" id="saveThisNote">Save
                             Note</button>
                     </div>
                 </div>

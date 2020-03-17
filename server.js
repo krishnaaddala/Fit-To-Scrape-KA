@@ -72,8 +72,6 @@ app.get("/scrape", function (req, res) {
         var $ = cheerio.load(response.data);
         $("div.quote").each(function (i, element) {
             var result = {};
-
-            // Add the text and href of every link, and save them as properties of the result object
             result.quote = $(this)
                 .children("span.text")
                 .text();
@@ -83,21 +81,16 @@ app.get("/scrape", function (req, res) {
                 .text();
             db.Quote.create(result)
                 .then(function (dbQuote) {
-                    // View the added result in the console
-                    //console.log(dbQuote);
                 })
                 .catch(function (err) {
                     console.log(err)
                 });
         });
-        // Send a message to the client
         res.redirect("/");
     });
 });
 
-// Route for getting all Quotes from the db
 app.get("/quotes", function (req, res) {
-    // Grab every document in the Quotes collection
     db.Quote.find({})
         .then(function (dbQuote) {
             res.json(dbQuote);
@@ -129,15 +122,12 @@ app.delete("/quotes/:id", function (req, res) {
         })
 });
 
-app.post("/quotes/add-note", function (req, res) {
-    // Create a new note and pass the req.body to the entry
+app.post("/quotes/add-note/:quoteId", function (req, res) {
     db.Note.create(req.body)
         .then(function (dbQuote) {
-            // If we were able to successfully update an Quote, send it back to the client
             res.json(dbQuote);
         })
         .catch(function (err) {
-            // If an error occurred, send it to the client
             res.json(err);
         });
 });
