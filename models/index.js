@@ -2,6 +2,6 @@
 
 module.exports = {
     // Quote: require("./quote"),
-    Note: require("./note")
+    MOOote: require("./note")
   };
   
